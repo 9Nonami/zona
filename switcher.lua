@@ -41,12 +41,6 @@ function switcher.createswitch(x, y)
 	return sw
 end
 
--- max: o valor maximo que o switcher pode chegar. passando desse
---      valor, retorna para 1
-function switcher.setmaxid(max)
-	switcher.max = max
-end
-
 -- mx: mouse x
 -- my: mouse y
 -- ismouseclicked: mouse clicked
@@ -71,18 +65,11 @@ end
 -- limit: dado exterior, vindo de upgrade, representa o maximo que o switch pode ir naquele momento (antes
 --        de voltar para 1)
 function switcher.checkswitch(selected, limit)
-
-	if switcher.switches[selected].id == switcher.max then
+	if switcher.switches[selected].id == limit then
 		switcher.switches[selected].id = 1
 	elseif switcher.switches[selected].id < limit then
 		switcher.switches[selected].id = switcher.switches[selected].id + 1
 	end
-
-	--[[
-	if switcher.switches[selected].id < limit then
-		switcher.switches[selected].id = switcher.switches[selected].id + 1
-	end
-	]]
 end
 
 function switcher.draw()

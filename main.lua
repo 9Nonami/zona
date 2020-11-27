@@ -1,9 +1,8 @@
 local switcher = require("switcher")
 local ismousepressed
-local upgrades = {4, 4, 4, 4}
+local upgrades = {1, 2, 3, 4}
 
 function love.load()
-	switcher.setmaxid(4)
 	switcher.createsheetandquads("switches-sheet.png", { {0, 0}, {30, 0}, {60, 0}, {90, 0} }, 30, 30, 4)
 	switcher.createswitches({ {0, 100}, {40, 100}, {80, 100}, {120, 100} })
 end
