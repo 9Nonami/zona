@@ -24,10 +24,9 @@ end
 function switcher.createswitches(coordinates)
 	local x = 1
 	local y = 2
-	local starterid = 1
 	switcher.switches = {}
 	for i = 1, #coordinates do
-		table.insert(switcher.switches, createswitch(coordinates[i][x], coordinates[i][y], starterid))
+		table.insert(switcher.switches, switcher.createswitch(coordinates[i][x], coordinates[i][y]))
 	end
 end
 
@@ -44,7 +43,7 @@ end
 
 -- max: o valor maximo que o switcher pode chegar. passando desse
 --      valor, retorna para 1
-function setmaxid(max)
+function switcher.setmaxid(max)
 	switcher.max = max
 end
 
@@ -72,15 +71,23 @@ end
 -- limit: dado exterior, vindo de upgrade, representa o maximo que o switch pode ir naquele momento (antes
 --        de voltar para 1)
 function switcher.checkswitch(selected, limit)
-	--[[
+
 	if switcher.switches[selected].id == switcher.max then
 		switcher.switches[selected].id = 1
 	elseif switcher.switches[selected].id < limit then
 		switcher.switches[selected].id = switcher.switches[selected].id + 1
 	end
-	]]
+
+	--[[
 	if switcher.switches[selected].id < limit then
-		switcher.switches[selected].id = switcher.switches[selecteed].id + 1
+		switcher.switches[selected].id = switcher.switches[selected].id + 1
+	end
+	]]
+end
+
+function switcher.draw()
+	for i = 1, #switcher.switches do
+		love.graphics.draw(switcher.sheet, switcher.quads[switcher.switches[i].id], switcher.switches[i].x, switcher.switches[i].y)
 	end
 end
 
